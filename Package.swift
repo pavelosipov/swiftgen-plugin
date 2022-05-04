@@ -12,7 +12,15 @@ let package = Package(
   targets: [
     .plugin(
       name: "SwiftGenPlugin",
-      capability: .buildTool(),
+      capability: .command(
+        intent: .custom(
+          verb: "Run swiftgen",
+          description: "Generates Swift code for target's resources"
+        ),
+        permissions: [
+          .writeToPackageDirectory(reason: "SwiftGen generates code with resource accessors")
+        ]
+      ),
       dependencies: ["swiftgen"]
     ),
     .binaryTarget(
