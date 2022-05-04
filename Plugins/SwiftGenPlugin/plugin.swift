@@ -7,11 +7,10 @@ struct SwiftGenPlugin: BuildToolPlugin {
     let swiftgenPath = try context.tool(named: "swiftgen").path
     let configPath = target.directory.appending("swiftgen.yml")
     let inputFilesDirectory = target.directory.appending("Resources")
-    let outputFilesDirectory = context.pluginWorkDirectory.appending("Generated")
-    try FileManager.default.createDirectory(
-      atPath: outputFilesDirectory.string,
-      withIntermediateDirectories: true
-    )
+    let outputFilesDirectory = context.pluginWorkDirectory
+      .appending("Generated")
+      .appending(context.package.displayName)
+      .appending(target.name)
     let environment = [
       "INPUT_DIR": inputFilesDirectory.string,
       "OUTPUT_DIR": outputFilesDirectory.string,
@@ -19,6 +18,10 @@ struct SwiftGenPlugin: BuildToolPlugin {
     print("swiftgenPath:", swiftgenPath)
     print("configPath:", configPath)
     print("environment:", environment)
+    try FileManager.default.createDirectory(
+      atPath: outputFilesDirectory.string,
+      withIntermediateDirectories: true
+    )
     return [
       .prebuildCommand(
         displayName: "Running SwiftGen",
