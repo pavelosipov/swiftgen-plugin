@@ -25,8 +25,12 @@ let package = Package(
     ),
     .binaryTarget(
       name: "swiftgen",
-      url: "https://github.com/nicorichard/SwiftGen/releases/download/6.5.1/swiftgen-6.5.1.zip",
-      checksum: "c5e7d24292a4f21f710f9a8c82f45559930a2a323c4fddd486ed453b11be0dc1"
+      path: "/usr/local/bin/swiftgen"
     )
+    // .binaryTarget(
+    //   name: "swiftgen",
+    //   url: "https://github.com/nicorichard/SwiftGen/releases/download/6.5.1/swiftgen-6.5.1.zip",
+    //   checksum: "c5e7d24292a4f21f710f9a8c82f45559930a2a323c4fddd486ed453b11be0dc1"
+    // )
   ]
 )
