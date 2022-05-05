@@ -4,38 +4,63 @@ import PackagePlugin
 @main
 struct SwiftGenPlugin: BuildToolPlugin {
   func createBuildCommands(context: PluginContext, target: Target) async throws -> [Command] {
-    let swiftgenPath = try context.tool(named: "swiftgen").path
-    let configPath = target.directory.appending("swiftgen.yml")
-    let inputFilesDirectory = target.directory.appending("Resources")
-    let outputFilesDirectory = context.pluginWorkDirectory
-      .appending("Generated")
-      .appending(context.package.displayName)
-      .appending(target.name)
-    let environment = [
-      "INPUT_DIR": inputFilesDirectory.string,
-      "OUTPUT_DIR": outputFilesDirectory.string,
-    ]
-    print("swiftgenPath:", swiftgenPath)
-    print("configPath:", configPath)
-    print("environment:", environment)
+    let swiftgenConfig = try SwiftGenCommandConfig.make(for: context, target: target)
+    dump(swiftgenConfig)
     try FileManager.default.createDirectory(
-      atPath: outputFilesDirectory.string,
+      atPath: swiftgenConfig.outputFilesPath.string,
       withIntermediateDirectories: true
     )
-    return [
-      .prebuildCommand(
-        displayName: "Running SwiftGen",
-        executable: swiftgenPath,
-        arguments: [
-          "config",
-          "run",
-          "--verbose",
-          "--config",
-          "\(configPath)"
-        ],
-        environment: environment,
-        outputFilesDirectory: outputFilesDirectory
-      ),
-    ]
+    return [.swiftgenCommand(for: swiftgenConfig)]
+  }
+}
+
+// MARK: -
+
+struct SwiftGenCommandConfig {
+  var toolPath: Path
+  var configPath: Path
+  var inputFilesPath: Path
+  var outputFilesPath: Path
+  var environment: [String : CustomStringConvertible]
+}
+
+extension SwiftGenCommandConfig {
+  static func make(for context: PluginContext, target: Target) throws -> Self {
+    .init(
+      toolPath: try context.tool(named: "swiftgen").path,
+      configPath: target.directory.appending("swiftgen.yml"),
+      inputFilesPath: target.directory.appending("Resources"),
+      outputFilesPath: context.pluginWorkDirectory
+        .appending("Generated")
+        .appending(context.package.displayName)
+        .appending(target.name)
+      )
+  }
+
+  init(toolPath: Path, configPath: Path, inputFilesPath: Path, outputFilesPath: Path) {
+    self.init(
+      toolPath: toolPath,
+      configPath: configPath,
+      inputFilesPath: inputFilesPath,
+      outputFilesPath: inputFilesPath,
+      environment: [
+        "INPUT_DIR": inputFilesPath,
+        "OUTPUT_DIR": outputFilesPath,
+      ]
+    )
+  }
+}
+
+// MARK: -
+
+extension Command {
+  static func swiftgenCommand(for swiftgen: SwiftGenCommandConfig) -> Command {
+    .prebuildCommand(
+      displayName: "Running SwiftGen",
+      executable: swiftgen.toolPath,
+      arguments: ["config", "run", "--verbose", "--config", swiftgen.configPath],
+      environment: swiftgen.environment,
+      outputFilesDirectory: swiftgen.outputFilesPath
+    )
   }
 }
