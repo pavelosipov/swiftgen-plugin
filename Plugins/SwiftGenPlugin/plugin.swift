@@ -29,11 +29,8 @@ extension SwiftGenCommandConfig {
     .init(
       toolPath: try context.tool(named: "swiftgen").path,
       inputFilesPath: target.directory.appending("Resources"),
-      outputFilesPath: context.pluginWorkDirectory
-        .appending("Generated")
-        .appending(context.package.displayName)
-        .appending(target.name)
-      )
+      outputFilesPath: context.pluginWorkDirectory.appending("Generated")
+    )
   }
 
   init(toolPath: Path, inputFilesPath: Path, outputFilesPath: Path) {
