@@ -42,7 +42,7 @@ extension SwiftGenCommandConfig {
       toolPath: toolPath,
       configPath: configPath,
       inputFilesPath: inputFilesPath,
-      outputFilesPath: inputFilesPath,
+      outputFilesPath: outputFilesPath,
       environment: [
         "INPUT_DIR": inputFilesPath,
         "OUTPUT_DIR": outputFilesPath,
