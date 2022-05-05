@@ -21,10 +21,7 @@ let package = Package(
     .library(name: "Buzz", targets: ["Buzz"])
   ],
   dependencies: [
-    .package(
-      url: "https://github.com/pavelosipov/swiftgen-plugin",
-      version: "1.0.0"
-    ),
+    .package(url: "https://github.com/pavelosipov/swiftgen-plugin", from: "1.0.0"),
   ],
   targets: [
     .target(
@@ -33,7 +30,7 @@ let package = Package(
       exclude: ["Resources/swiftgen.yml"],
       resources: [.process("Resources")],
       plugins: [
-        .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
+        .plugin(name: "SwiftGenPlugin", package: "swiftgen-plugin")
       ]
     ),
     .target(
@@ -42,7 +39,7 @@ let package = Package(
       exclude: ["Resources/swiftgen.yml"],
       resources: [.process("Resources")],
       plugins: [
-        .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
+        .plugin(name: "SwiftGenPlugin", package: "swiftgen-plugin")
       ]
     ),
     .target(
@@ -50,7 +47,7 @@ let package = Package(
       exclude: ["Resources/swiftgen.yml"],
       resources: [.process("Resources")],
       plugins: [
-        .plugin(name: "SwiftGenPlugin", package: "SwiftGenPlugin")
+        .plugin(name: "SwiftGenPlugin", package: "swiftgen-plugin")
       ]
     )
   ]
