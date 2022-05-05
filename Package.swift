@@ -25,9 +25,10 @@ let package = Package(
     ),
     .binaryTarget(
       name: "swiftgen",
-      url: "https://getfile.dokpub.com/yandex/get/https://disk.yandex.ru/d/cn5hbs0PRBLozg",
+      url: "http://localhost:8000/swiftgen-disk-6.5.1.zip",
+      checksum: "2ad7b014899e6fb9f09b32544549703e6f59d40f91248d9c2dfd880045010339"
       // url: "https://github.com/nicorichard/SwiftGen/releases/download/6.5.1/swiftgen-6.5.1.zip",
-      checksum: "c5e7d24292a4f21f710f9a8c82f45559930a2a323c4fddd486ed453b11be0dc1"
+      // checksum: "c5e7d24292a4f21f710f9a8c82f45559930a2a323c4fddd486ed453b11be0dc1"
     )
   ]
 )
