@@ -28,7 +28,6 @@ extension SwiftGenCommandConfig {
   static func make(for context: PluginContext, target: Target) throws -> Self {
     .init(
       toolPath: try context.tool(named: "swiftgen").path,
-      configPath: target.directory.appending("swiftgen.yml"),
       inputFilesPath: target.directory.appending("Resources"),
       outputFilesPath: context.pluginWorkDirectory
         .appending("Generated")
@@ -37,10 +36,10 @@ extension SwiftGenCommandConfig {
       )
   }
 
-  init(toolPath: Path, configPath: Path, inputFilesPath: Path, outputFilesPath: Path) {
+  init(toolPath: Path, inputFilesPath: Path, outputFilesPath: Path) {
     self.init(
       toolPath: toolPath,
-      configPath: configPath,
+      configPath: inputFilesPath.appending("swiftgen.yml"),
       inputFilesPath: inputFilesPath,
       outputFilesPath: outputFilesPath,
       environment: [
