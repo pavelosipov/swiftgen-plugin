@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-  name: "SwiftGenPlugin",
+  name: "swiftgen-plugin",
   products: [
     .plugin(name: "SwiftGenPlugin", targets: ["SwiftGenPlugin"])
   ],
