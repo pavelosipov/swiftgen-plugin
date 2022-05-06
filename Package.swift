@@ -26,7 +26,7 @@ let package = Package(
     .binaryTarget(
       name: "swiftgen",
       url: "https://localhost:4433/swiftgen-6.5.1.zip",
-      checksum: "8390e715f3c12504429e46478d42e68fb611a66154be6d881b5f6e878400e1aa"
+      checksum: "60aa0783e1e5e20df7d16d0f0e49b3abb49f08539563758d99411d2b2121eec0"
     ),
     // .binaryTarget(
     //   name: "rswift",
