@@ -21,7 +21,7 @@ let package = Package(
           .writeToPackageDirectory(reason: "SwiftGen generates code with resource accessors")
         ]
       ),
-      dependencies: ["rswift"]
+      dependencies: ["swiftgen"]
     ),
     .binaryTarget(
       name: "swiftgen",
