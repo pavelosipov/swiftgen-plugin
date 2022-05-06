@@ -27,8 +27,8 @@ let package = Package(
       name: "swiftgen",
       // url: "https://localhost:4433/swiftgen-disk-6.5.1.zip",
       // checksum: "2ad7b014899e6fb9f09b32544549703e6f59d40f91248d9c2dfd880045010339"
-      url: "https://localhost:4433/swiftgen.artifactbundle.zip",
-      checksum: "a8e445b41ac0fd81459e07657ee19445ff6cbeef64eb0b3df51637b85f925da8"
+      url: "https://localhost:4433/swiftgen-subdir-6.5.1.zip",
+      checksum: "312b986c0be7e13c7411fd4a0baa11c9fa7bf75a796d7cd373b67a4d7ec021ae"
     )
   ]
 )
