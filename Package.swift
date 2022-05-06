@@ -23,11 +23,11 @@ let package = Package(
       ),
       dependencies: ["rswift"]
     ),
-    .binaryTarget(
-      name: "swiftgen",
-      url: "https://localhost:4433/swiftgen-v6.5.1.zip",
-      checksum: "1cde240d8a1cb7a3656329991fcd4f16113171dde45024cc2ade37d412bca876"
-    ),
+    // .binaryTarget(
+    //   name: "swiftgen",
+    //   url: "https://localhost:4433/swiftgen-v6.5.1.zip",
+    //   checksum: "1cde240d8a1cb7a3656329991fcd4f16113171dde45024cc2ade37d412bca876"
+    // ),
     .binaryTarget(
       name: "rswift",
       url: "https://localhost:4433/rswift-v6.1.0.zip",
