@@ -26,7 +26,7 @@ let package = Package(
     .binaryTarget(
       name: "swiftgen",
       url: "https://localhost:4433/swiftgen.artifactbundle.zip",
-      checksum: "b308b0250e7111b10f3ce5ef2d79bc200212809e67cbc8c3f8407539775430a8"
+      checksum: "655391fe7c9dfc239f04c0b2df9b30ccd73d7d6c53ff3a6aa35bf5ad3c5c3911"
     ),
     // .binaryTarget(
     //   name: "rswift",
